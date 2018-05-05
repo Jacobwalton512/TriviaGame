@@ -1,0 +1,220 @@
+<html>
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class = "row"></div>
+    <div class = "row">
+        <div class = "col-md-12 text-center btn-secondary" id="question">Placeholder</div>
+        <div class = "col-md-2 btn btn-secondary m-2" id="choice1">Answer1</div>
+        <div class = "col-md-2 btn btn-secondary m-2" id="choice2">Answer2</div>
+        <div class = "col-md-2 btn btn-secondary m-2" id="choice3">Answer3</div>
+        <div class = "col-md-2 btn btn-secondary m-2" id="choice4">Answer4</div>
+        <div class = "col-md-12 text-center btn btn-secondary m-3" id ="submit">SUBMIT</div>
+
+    <script>
+        var q1 = {question: "What were Luke's aunt and uncle's job on Tattoine?",
+            answer1:"Weed Farmers",
+            answer2:"Moisture Farmers",
+            answer3:"Owned a salvage yard",
+            answer4:"Droid Resellers",
+            correctAnswer:"Moisture Farmers"
+            };
+            var q2 = {question: "Who was Luke's father",
+            answer1:"Obi Wan Kenobi",
+            answer2:"Anakin Skywalker",
+            answer3:"Your Mom",
+            answer4:"Darth Sidius",
+            correctAnswer:"Anakin Skywalker"
+            };
+
+
+    var questionArray =[
+        q1,q2
+    ];
+    var correctGuesses=0;
+    var wrongGuesses=0;
+    var userguess=[];
+    var guessTime=30;
+    var isRunning=true;
+    var timer;
+    var score=0;
+    var i =0;
+
+    function gameStart(){
+
+        isRunning=true;
+        guessTime=30;
+        userGuess=[];
+        
+
+         if(correctGuesses+wrongGuesses<questionArray.length){
+                timer= setInterval(function(){
+                    guessTime--;
+                    $("#timer").text(guessTime + "Seconds Remaining");
+                    console.log(guessTime)
+            
+
+                    if(guessTime===0){
+                        clearInterval(timer);
+                        $("#timer").text("You suck ass you lose");
+                        score -=50;
+                        wrongGuesses++;
+                        gameStart();
+                    };
+            
+                },1000);
+                $("#question").text(questionArray[i].question);
+                $("#choice1").text(questionArray[i].answer1);
+                $("#choice2").text(questionArray[i].answer2);
+                $("#choice3").text(questionArray[i].answer3);
+                $("#choice4").text(questionArray[i].answer4);
+
+                $("#choice1").click (function(){
+                    userGuess.splice(0,1, questionArray[i].answer1);
+                    console.log(userGuess); 
+                });
+                $("#choice2").click (function(){
+                    userGuess.splice(0,1, questionArray[i].answer2);
+                    console.log(userGuess); 
+                });
+                $("#choice3").click (function(){
+                    userGuess.splice(0,1, questionArray[i].answer3);
+                    console.log(userGuess); 
+                });
+                $("#choice4").click (function(){
+                    userGuess.splice(0,1, questionArray[i].answer4);
+                    console.log(userGuess); 
+                });
+                $("#submit").click (function(){
+                    if(isRunning=true){
+                        clearInterval(timer);
+                        isRunning=false;
+
+                        if(userGuess==questionArray[i].correctAnswer){
+                            i++;
+                            score +=50;
+                            correctGuesses++;
+                            gameStart();    
+                        }
+                        else{
+                            i++;
+                            score-=50;
+                            wrongGuesses++;
+                            gameStart();
+                        }
+                        
+                    }
+                })
+
+        }
+        else{
+            alert("score = " + score + " game over")
+        }
+        
+    };
+
+        gameStart();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
